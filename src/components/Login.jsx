@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import { Link } from "react-router-dom";
 import { checkSession } from "../utils/checkSession";
+import {URL} from '../utils/URL.js';
 
 const loginUser = async (username, password, navigate) => {
-    const response = await fetch('http://localhost:5000/login', {
+    const response = await fetch(URL + '/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),

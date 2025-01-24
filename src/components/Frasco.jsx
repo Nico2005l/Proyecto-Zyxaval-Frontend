@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Mosca from "./Mosca";
+import {URL} from '../utils/URL.js';
 
 
 function Frasco(props) {
@@ -10,7 +11,7 @@ function Frasco(props) {
 
         const fetchFlies = async () => {
             const token = sessionStorage.getItem('token');
-            const response = await fetch('http://localhost:5000/flies/'+props.id, {
+            const response = await fetch(URL + '/flies/'+props.id, {
                 method: 'GET',
                 headers: { token },
             });

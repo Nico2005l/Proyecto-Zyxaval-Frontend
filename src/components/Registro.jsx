@@ -2,10 +2,11 @@ import Header from './Header';
 import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { checkSession } from '../utils/checkSession';
+import {URL} from '../utils/URL.js';
 
 
 const registerUser = async (username, password) => {
-    const response = await fetch('http://localhost:5000/register', {
+    const response = await fetch(URL + '/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),

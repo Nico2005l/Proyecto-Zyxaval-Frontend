@@ -2,13 +2,14 @@ import { checkSession } from "../utils/checkSession";
 import Header from './Header';
 import Spinner from './Spinner';
 import Frasco from './Frasco';
+import {URL} from '../utils/URL.js';
 
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
 const createJar = async (name) => {
     const token = sessionStorage.getItem('token');
-    const response = await fetch('http://localhost:5000/jars', {
+    const response = await fetch(URL + '/jars', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', token },
         body: JSON.stringify({ name }),
@@ -26,7 +27,7 @@ function FrascosYMoscas() {
 
         const fetchJars = async () => {
             const token = sessionStorage.getItem('token');
-            const response = await fetch('http://localhost:5000/jars', {
+            const response = await fetch(URL + '/jars', {
               method: 'GET',
               headers: { token },
             });

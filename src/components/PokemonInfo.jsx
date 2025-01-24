@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from './Header';
 import Spinner from './Spinner';
+import {URL} from '../utils/URL.js';
 
 const AsignPokemon = async (name) => {
     const token = sessionStorage.getItem('token');
-    const response = await fetch('http://localhost:5000/profile', {
+    const response = await fetch(URL + '/profile', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', token },
         body: JSON.stringify({ pokemon: name }),
@@ -34,7 +35,7 @@ const PokemonInfo = () => {
 
     const fetchProfile = async () => {
         const token = sessionStorage.getItem('token');
-        const response = await fetch('http://localhost:5000/profile', {
+        const response = await fetch(URL + '/profile', {
             method: 'GET',
             headers: { token },
         });

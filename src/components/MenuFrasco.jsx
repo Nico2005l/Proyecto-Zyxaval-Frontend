@@ -5,12 +5,13 @@ import ColorPicker from "./ColorPicker";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { checkSession } from "../utils/checkSession";
+import {URL} from '../utils/URL.js';
 
 
 
 const changeJarName = async (name, id) => {
     const token = sessionStorage.getItem('token');
-    const response = await fetch('http://localhost:5000/jars/'+id, {
+    const response = await fetch(URL + '/jars/'+id, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', token },
         body: JSON.stringify({ name }),
@@ -21,7 +22,7 @@ const changeJarName = async (name, id) => {
 
 const deleteJar = async (id) => {
     const token = sessionStorage.getItem('token');
-    const response = await fetch('http://localhost:5000/jars/'+id, {
+    const response = await fetch(URL + '/jars/'+id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', token },
     });
@@ -31,7 +32,7 @@ const deleteJar = async (id) => {
 
 const createFly = async (jarId, bodyColor) => {
     const token = sessionStorage.getItem('token');
-    const response = await fetch('http://localhost:5000/flies', {
+    const response = await fetch(URL + '/flies', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', token },
         body: JSON.stringify({ jarId, bodyColor})
@@ -42,7 +43,7 @@ const createFly = async (jarId, bodyColor) => {
 
 const deleteFly = async (jarId, flyid) => {
     const token = sessionStorage.getItem('token');
-    const response = await fetch('http://localhost:5000/flies/'+jarId+'/'+flyid, {
+    const response = await fetch(URL + '/flies/'+jarId+'/'+flyid, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', token },
     });
@@ -81,7 +82,7 @@ function MenuFrasco() {
 
         const fetchJar = async () => {
             const token = sessionStorage.getItem('token');
-            const response = await fetch('http://localhost:5000/jars/'+id, {
+            const response = await fetch(URL + '/jars/'+id, {
                 method: 'GET',
                 headers: { token },
             });
@@ -93,7 +94,7 @@ function MenuFrasco() {
 
         const fetchFlies = async () => {
             const token = sessionStorage.getItem('token');
-            const response = await fetch('http://localhost:5000/flies/'+id, {
+            const response = await fetch(URL + '/flies/'+id, {
                 method: 'GET',
                 headers: { token },
             });
