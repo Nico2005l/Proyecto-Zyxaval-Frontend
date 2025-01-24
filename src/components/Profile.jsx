@@ -27,7 +27,8 @@ function Profile() {
             const token = sessionStorage.getItem('token');
             const response = await fetch(URL + '/jars', {
               method: 'GET',
-              headers: { token },
+              headers: { 'Content-Type': 'application/json',
+                          'Cache-Control': 'no-cache',token },
             });
             const data = await response.json();
             setJars(data);

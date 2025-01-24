@@ -34,7 +34,8 @@ const createFly = async (jarId, bodyColor) => {
     const token = sessionStorage.getItem('token');
     const response = await fetch(URL + '/flies', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', token },
+        headers: { 'Content-Type': 'application/json',
+                    'Cache-Control': 'no-cache', token },
         body: JSON.stringify({ jarId, bodyColor})
     });
     const data = await response.json();
@@ -45,7 +46,8 @@ const deleteFly = async (jarId, flyid) => {
     const token = sessionStorage.getItem('token');
     const response = await fetch(URL + '/flies/'+jarId+'/'+flyid, {
         method: 'DELETE',
-        headers: { 'Content-Type': 'application/json', token },
+        headers: { 'Content-Type': 'application/json',
+                    'Cache-Control': 'no-cache', token },
     });
     const data = await response.json();
     window.location.reload();
@@ -84,7 +86,8 @@ function MenuFrasco() {
             const token = sessionStorage.getItem('token');
             const response = await fetch(URL + '/jars/'+id, {
                 method: 'GET',
-                headers: { token },
+                headers: {'Content-Type': 'application/json',
+                            'Cache-Control': 'no-cache', token },
             });
             const data = await response.json();
             
