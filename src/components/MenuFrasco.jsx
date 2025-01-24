@@ -64,13 +64,13 @@ function MenuFrasco() {
     const handleDelete = () => {
         deleteJar(id);
         navigate('/FrascosYMoscas');
-    };
+    }; 
 
     const handleChangeName = (event) => {
         event.preventDefault();
         const name = event.target.elements.name.value;
         changeJarName(name, id);
-        window.location.reload();
+        fetchJar();
     };
 
     const [selectedColor, setSelectedColor] = useState("#FFFFFF"); // Color inicial
@@ -80,30 +80,30 @@ function MenuFrasco() {
         setSelectedColor(color); // Actualiza el estado con el color elegido
     };
 
+    const fetchJar = async () => {
+        const token = sessionStorage.getItem('token');
+        const response = await fetch(URL + '/jars/'+id, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json',
+                        'Cache-Control': 'no-cache', token },
+        });
+        const data = await response.json();
+        
+        setJar(data);
+        setLoading(false);
+    };
+
+    const fetchFlies = async () => {
+        const token = sessionStorage.getItem('token');
+        const response = await fetch(URL + '/flies/'+id, {
+            method: 'GET',
+            headers: { token },
+        });
+        const data = await response.json();
+        setFlies(data);
+    };
+
     useEffect(() => {
-
-        const fetchJar = async () => {
-            const token = sessionStorage.getItem('token');
-            const response = await fetch(URL + '/jars/'+id, {
-                method: 'GET',
-                headers: {'Content-Type': 'application/json',
-                            'Cache-Control': 'no-cache', token },
-            });
-            const data = await response.json();
-            
-            setJar(data);
-            setLoading(false);
-        };
-
-        const fetchFlies = async () => {
-            const token = sessionStorage.getItem('token');
-            const response = await fetch(URL + '/flies/'+id, {
-                method: 'GET',
-                headers: { token },
-            });
-            const data = await response.json();
-            setFlies(data);
-        };
 
         const verifySession = async () => {
             const isLoggedIn = await checkSession();
@@ -116,7 +116,7 @@ function MenuFrasco() {
         };
         verifySession(); 
         
-    }, []);
+    }, [flies]);
 
     if (loading) {
         return <Spinner />;
@@ -146,12 +146,12 @@ function MenuFrasco() {
             </div>
             <div className="w-full max-w-6xl rounded-lg overflow-hidden shadow-lg bg-white p-8 mt-8 justify-self-center">
                 <h1 className='text-3xl font-light mb-6'>Añadir Mosca</h1>
-                <form className="grid gap-4" onSubmit={(e) => {
+                <form className="grid gap-4" onSubmit={async (e) => {
                     e.preventDefault();
                     const bodyColor = selectedColor;
-                    createFly(id, bodyColor);
-                    window.location.reload();
-                } }>
+                    await createFly(id, bodyColor);
+                    fetchFlies();
+                }}>
                     <div>
                         <h2 className="text-2xl font-light">Elige un color:</h2>
                         <div className="gap-4">
@@ -181,7 +181,10 @@ function MenuFrasco() {
                             Rareza: {fly.id % 7 === 0 ? 'Ultra-Raro' : fly.id % 5 === 0 ? 'Legendaria' : fly.id % 3 === 0 ? 'Raro' : 'Común'}
                             </p>
                         
-                            <button onClick={() => deleteFly(id, fly.id)} className="px-6 py-3 bg-red-500 text-white rounded-full text-lg transform transition duration-500 hover:scale-105 shadow-sm hover:bg-red-700">Eliminar</button>
+                            <button onClick={async () => {
+                                await deleteFly(id, fly.id);
+                                fetchFlies();
+                            }} className="px-6 py-3 bg-red-500 text-white rounded-full text-lg transform transition duration-500 hover:scale-105 shadow-sm hover:bg-red-700">Eliminar</button>
                         
                         </li>
                     ))}
