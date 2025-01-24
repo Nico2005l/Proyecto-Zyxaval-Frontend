@@ -127,7 +127,7 @@ function MenuFrasco() {
             <Header title="Menu Frasco" description="Aquí puedes gestionar tu frasco. Ademas de añadir y quitar moscas"/>  
             <div className="w-full max-w-6xl rounded-lg overflow-hidden shadow-2xl bg-white p-8 flex flex-col md:flex-row items-center gap-6 justify-self-center">
                 <div className="bg-gray-100 p-8 rounded-lg shadow-md w-full md:w-auto">
-                    <Frasco name={jar.name} id={jar.id} flychange={fly}/>
+                    <Frasco name={jar.name} id={jar.id} flychange={flies}/>
                 </div>
                 <div className="bg-gray-100 p-8 rounded-lg shadow-md w-full h-full">
                     <form onSubmit={handleChangeName} className="w-full max-w-4xl rounded-lg overflow-hidden bg-gray-100 p-6 space-y-4">
