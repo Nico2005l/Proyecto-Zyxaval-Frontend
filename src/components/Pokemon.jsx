@@ -31,7 +31,7 @@ function Pokemon({ name, image, type1, type2 }) {
     };
 
     return (
-        <div onClick={handleClick} className="size-1/4 mx-auto bg-white shadow-lg rounded-lg overflow-hidden border border-gray-300 transform transition duration-500 hover:scale-105">
+        <div onClick={handleClick} className="size-full mx-auto bg-white shadow-lg rounded-lg overflow-hidden border border-gray-300 transform transition duration-500 hover:scale-105">
             <img
                 src={image}
                 alt={name.charAt(0).toUpperCase() + name.slice(1)}
