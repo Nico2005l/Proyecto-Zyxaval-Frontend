@@ -1,3 +1,1 @@
-
-
-const URL = "https://proyecto-zyxaval-backend.onrender.com/"
+export const URL = "https://proyecto-zyxaval-backend.onrender.com";
