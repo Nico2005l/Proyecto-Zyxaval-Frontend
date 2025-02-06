@@ -233,7 +233,7 @@ const WeatherWidget = () => {
         
 
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+          `https://api.openweathermap.org/data/2.5/weather?q=${city},arg&appid=${apiKey}&units=metric&lang=es`
         );
         const data = await response.json();
         setWeather(data);
