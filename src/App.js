@@ -30,7 +30,10 @@ function App() {
         {"url":'/login', "name":'Login', "icon": ' /media/user.png'},
         {"url":'/aboutMe', "name":'About Me', "icon": ' /media/me.png'},
         {"url":'/pokemon', "name":'Pokemons', "icon": ' /media/pokeball.png'},
-        {"url":'/FrascosYMoscas', "name":'Frascos Y Moscas', "icon": ' /media/mosca.png'}
+        {"url":'/FrascosYMoscas', "name":'Frascos Y Moscas', "icon": ' /media/mosca.png'},
+        {"url":'/Widgets', "name":'Widgets', "icon": ' /media/widgets.jpg'
+
+        }
       ]}/>
     <Routes>
       <Route path="/" element={<Home />} />
