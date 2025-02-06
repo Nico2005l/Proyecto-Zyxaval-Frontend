@@ -230,8 +230,6 @@ const WeatherWidget = () => {
     const fetchWeather = async () => {
       try {
         const apiKey = "440590ed9c477faf922f0be72f5e314a"; // Reemplaza con tu API key de OpenWeatherMap
-        
-
         const response = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=${city},ar&appid=${apiKey}&units=metric&lang=es`
         );
