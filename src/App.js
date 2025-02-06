@@ -15,7 +15,8 @@ import FrascosYMoscas from './components/FrascosYMoscas';
 import NotFound from './components/NotFound';
 import MenuFrasco from './components/MenuFrasco';
 import Sombras from './components/Sombras';
-
+import NoEsta from './components/NoEsta';
+import MuroWidgets from './components/MuroWidgets';
 
 function App() {
 
@@ -41,6 +42,8 @@ function App() {
       <Route path="/pokemon/:name" element={<PokemonInfo />} />
       <Route path="/FrascosYMoscas" element={<FrascosYMoscas />} />
       <Route path="/Frasco/:id" element={<MenuFrasco />} />
+      <Route path="/NoEsta" element={<NoEsta />} />
+      <Route path="/Widgets" element={<MuroWidgets />} />
       
       <Route path="*" element={<NotFound/>} />
     </Routes>
