@@ -1,71 +1,68 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPython, faJsSquare, faHtml5, faJava, } from '@fortawesome/free-brands-svg-icons';
-import {faDatabase, faCode} from '@fortawesome/free-solid-svg-icons';
+import { faPython, faJsSquare, faHtml5, faJava, faGithub, faWindows} from '@fortawesome/free-brands-svg-icons';
+import {faDatabase, faCode, faCodeBranch, faLaptopCode, faUserAstronaut, faServer} from '@fortawesome/free-solid-svg-icons';
 
 function Skills() {
-  return (
-    <section className="w-full max-w-6xl rounded-lg mx-auto text-center py-12 mb-8 ">
-      <h2 className="text-4xl font-light text-white capitalize">Mis Habilidades</h2>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mt-10'>
-        <div className="w-full max-w-6xl rounded-lg overflow-hidden shadow-2xl bg-white p-8 items-center hover:shadow-lg transition-shadow duration-300">
-          <h3 className="text-2xl font-semibold text-gray-700 mb-4">Lenguajes</h3>
-          <ul className="mt-6 space-y-6">
-            <li className="text-xl text-gray-600 flex items-center justify-center hover:text-blue-500 transition-colors duration-300">
-              <FontAwesomeIcon icon={faPython} className="mr-4 text-2xl" />
-              Python
-            </li>
-            <li className="text-xl text-gray-600 flex items-center justify-center hover:text-yellow-500 transition-colors duration-300">
-              <FontAwesomeIcon icon={faJsSquare} className="mr-4 text-2xl" />
-              JavaScript
-            </li>
-            <li className="text-xl text-gray-600 flex items-center justify-center hover:text-orange-500 transition-colors duration-300">
-              <FontAwesomeIcon icon={faHtml5} className="mr-4 text-2xl" />
-              HTML & CSS
-            </li>
-            <li className="text-xl text-gray-600 flex items-center justify-center hover:text-red-500 transition-colors duration-300">
-              <FontAwesomeIcon icon={faJava} className="mr-4 text-2xl" />
-              Java
-            </li>
-            <li className="text-xl text-gray-600 flex items-center justify-center hover:text-purple-500 transition-colors duration-300">
-              <FontAwesomeIcon icon={faCode} className="mr-4 text-2xl" />
-              C#
-            </li>
-            <li className="text-xl text-gray-600 flex items-center justify-center hover:text-green-500 transition-colors duration-300">
-              <FontAwesomeIcon icon={faDatabase} className="mr-4 text-2xl" />
-              SQL
-            </li>
-          </ul>
-        </div>
+  const skillsData = [
+    {
+      category: "Lenguajes",
+      skills: [
+        { name: "Python", icon: faPython, color: "blue-500" },
+        { name: "JavaScript", icon: faJsSquare, color: "yellow-500" },
+        { name: "HTML & CSS", icon: faHtml5, color: "orange-500" },
+        { name: "Java", icon: faJava, color: "red-500" },
+        { name: "C#", icon: faCode, color: "purple-500" },
+        { name: "SQL", icon: faDatabase, color: "green-500" },
+      ],
+    },
+    {
+      category: "Tecnologias",
+      skills: [
+        { name: "React.js", icon: faJsSquare, color: "blue-500" },
+        { name: "Next.js", icon: faJsSquare, color: "blue-500" },
+        { name: "Django", icon: faPython, color: "green-500" },
+        { name: "Django Rest Framework", icon: faPython, color: "green-500" },
+        { name: "SQL Server", icon: faServer, color: "red-500" },
+        { name: "MySQL", icon: faDatabase, color: "orange-500" },
+      ],
+    },
+    {
+      category: "Herramientas",
+      skills: [
+        { name: "Git", icon: faCodeBranch, color: "red-500" },
+        { name: "GitHub", icon: faGithub, color: "purple-500" },
+        { name: "VS Code", icon: faLaptopCode, color: "blue-500" },
+        { name: "Postman", icon: faUserAstronaut, color: "orange-500" },
+        { name: "Microsoft Office", icon: faWindows, color: "green-500" },
 
-        <div className="w-full max-w-6xl rounded-lg overflow-hidden shadow-2xl bg-white p-8 items-center hover:shadow-lg transition-shadow duration-300">
-          <h3 className="text-2xl font-semibold text-gray-700 mb-4">Tecnologias</h3>
-          <ul className="mt-6 space-y-6">
-            <li className="text-xl text-gray-600 flex items-center justify-center hover:text-blue-500 transition-colors duration-300">
-              <FontAwesomeIcon icon={faJsSquare} className="mr-4 text-2xl" />
-              React
-            </li>
-            <li className="text-xl text-gray-600 flex items-center justify-center hover:text-blue-500 transition-colors duration-300">
-              <FontAwesomeIcon icon={faJsSquare} className="mr-4 text-2xl" />
-              Next.js
-            </li>
-            <li className="text-xl text-gray-600 flex items-center justify-center hover:text-green-500 transition-colors duration-300">
-              <FontAwesomeIcon icon={faDatabase} className="mr-4 text-2xl" />
-              Django
-            </li>
-            <li className="text-xl text-gray-600 flex items-center justify-center hover:text-green-500 transition-colors duration-300">
-              <FontAwesomeIcon icon={faDatabase} className="mr-4 text-2xl" />
-              DRF (Django Rest Framework)
-            </li>
-            <li className="text-xl text-gray-600 flex items-center justify-center hover:text-red-500 transition-colors duration-300">
-              <FontAwesomeIcon icon={faDatabase} className="mr-4 text-2xl" />
-              SQL Server
-            </li>
-            <li className="text-xl text-gray-600 flex items-center justify-center hover:text-orange-500 transition-colors duration-300">
-              <FontAwesomeIcon icon={faDatabase} className="mr-4 text-2xl" />
-              MySQL
-            </li>
-          </ul>
-        </div>
+      ],
+    },
+  ];
+
+  const SkillCard = ({ category, skills }) => (
+    <div className="w-full max-w-6xl rounded-lg overflow-hidden shadow-2xl bg-white p-8 items-center hover:shadow-lg transition-shadow duration-300">
+      <h3 className="text-2xl font-semibold text-gray-700 mb-4">{category}</h3>
+      <ul className="mt-6 space-y-6">
+        {skills.map((skill, index) => (
+          <li
+            key={index}
+            className={`text-xl text-gray-600 flex items-center justify-center hover:text-${skill.color} transition-colors duration-300`}
+          >
+            <FontAwesomeIcon icon={skill.icon} className="mr-4 text-2xl" />
+            {skill.name}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
+  return (
+    <section className="w-full max-w-6xl rounded-lg mx-auto text-center py-12 mb-8">
+      <h2 className="text-4xl font-light text-white capitalize">Mis Habilidades</h2>
+      <div className=" flex gap-8 mt-10">
+        {skillsData.map((data, index) => (
+          <SkillCard key={index} category={data.category} skills={data.skills} />
+        ))}
       </div>
     </section>
   );

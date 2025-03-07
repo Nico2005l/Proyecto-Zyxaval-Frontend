@@ -27,15 +27,15 @@ function NavBar(props) {
   return (
     <nav className="bg-black p-4 shadow-md sticky top-0 z-50">
       <div className="mx-auto flex justify-between items-center flex-wrap">
-        <div className="flex justify-between w-full sm:w-auto">
+        <div className="flex justify-between w-full lg:w-auto">
           <img src={' /media/zyxaval.jpg'} alt="" className='w-20 rounded transition-transform transform hover:scale-110 duration-300 ease-in-out' />
-          <button className="text-white sm:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+          <button className="text-white lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>
           </button>
         </div>
-        <ul className={`flex-col space-x-6 transition-all duration-300 ease-in-out pt-4 justify-start sm:pt-0 sm:flex-row sm:flex  ${menuOpen ? 'flex' : 'hidden'} `}>
+        <ul className={`flex-col space-x-6 transition-all duration-300 ease-in-out pt-4 justify-start lg:pt-0 lg:flex-row lg:flex  ${menuOpen ? 'flex' : 'hidden'} `}>
           {props.sites.map((site, index) => (
             <li key={index} className="py-2 ml-5"> 
               <Link
