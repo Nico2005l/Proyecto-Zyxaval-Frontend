@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const createJar = async (name) => {
     const token = sessionStorage.getItem('token');
-    const response = await fetch(BACKEND_URL + '/jars', {
+    const response = await fetch(`${BACKEND_URL + '/jars'}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', token },
         body: JSON.stringify({ name }),
@@ -27,7 +27,7 @@ function FrascosYMoscas() {
 
         const fetchJars = async () => {
             const token = sessionStorage.getItem('token');
-            const response = await fetch(BACKEND_URL + '/jars', {
+            const response = await fetch(`${BACKEND_URL + '/jars'}`, {
               method: 'GET',
               headers: { token },
             });

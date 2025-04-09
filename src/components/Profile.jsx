@@ -15,7 +15,7 @@ function Profile() {
 
         const fetchProfile = async () => {
             const token = sessionStorage.getItem('token');
-            const response = await fetch(BACKEND_URL + '/profile', {
+            const response = await fetch(`${BACKEND_URL + '/profile'}`, {
               method: 'GET',
               headers: { token },
             });
@@ -25,7 +25,7 @@ function Profile() {
 
         const fetchJars = async () => {
             const token = sessionStorage.getItem('token');
-            const response = await fetch(BACKEND_URL + '/jars', {
+            const response = await fetch(`${BACKEND_URL + '/jars'}`, {
               method: 'GET',
               headers: { 'Content-Type': 'application/json',
                           'Cache-Control': 'no-cache',token },

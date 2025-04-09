@@ -6,7 +6,7 @@ import {BACKEND_URL} from '../utils/BackendUrl.js';
 
 
 const registerUser = async (username, password) => {
-    const response = await fetch(BACKEND_URL + '/register', {
+    const response = await fetch(`${BACKEND_URL + '/register'}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
