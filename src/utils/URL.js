@@ -1,1 +1,1 @@
-export const URL = "https://proyecto-zyxaval-backend.onrender.com";
+export const URL = "proyecto-zyxaval-backend-production.up.railway.app";
