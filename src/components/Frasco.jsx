@@ -11,7 +11,7 @@ function Frasco(props) {
 
         const fetchFlies = async () => {
             const token = sessionStorage.getItem('token');
-            const response = await fetch(`${BACKEND_URL}'/flies/'${props.id}`, {
+            const response = await fetch(`${BACKEND_URL}/flies/${props.id}`, {
                 method: 'GET',
                 headers: { token },
             });
