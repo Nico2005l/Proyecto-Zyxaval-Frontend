@@ -4,7 +4,7 @@ import Header from './Header';
 import Frasco from './Frasco';
 import Spinner from './Spinner';
 import { checkSession } from '../utils/checkSession';
-import {URL} from '../utils/URL.js';
+import {BACKEND_URL} from '../utils/URL.js';
 
 function Profile() {
     const [profileData, setProfileData] = useState([]);
@@ -15,7 +15,7 @@ function Profile() {
 
         const fetchProfile = async () => {
             const token = sessionStorage.getItem('token');
-            const response = await fetch(URL + '/profile', {
+            const response = await fetch(BACKEND_URL + '/profile', {
               method: 'GET',
               headers: { token },
             });
@@ -25,7 +25,7 @@ function Profile() {
 
         const fetchJars = async () => {
             const token = sessionStorage.getItem('token');
-            const response = await fetch(URL + '/jars', {
+            const response = await fetch(BACKEND_URL + '/jars', {
               method: 'GET',
               headers: { 'Content-Type': 'application/json',
                           'Cache-Control': 'no-cache',token },

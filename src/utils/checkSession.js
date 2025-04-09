@@ -1,10 +1,10 @@
-import {URL} from './URL.js';
+import {BACKEND_URL} from './URL.js';
 
 export const checkSession = async () => {
     const token = sessionStorage.getItem('token');
     if (!token) return false;
 
-    const response = await fetch(URL+'/profile', {
+    const response = await fetch(BACKEND_URL+'/profile', {
         method: 'GET',
         headers: { token },
     });

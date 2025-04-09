@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from './Header';
 import Spinner from './Spinner';
-import {URL} from '../utils/URL.js';
+import {BACKEND_URL} from '../utils/URL.js';
 
 const AsignPokemon = async (name) => {
     const token = sessionStorage.getItem('token');
-    const response = await fetch(URL + '/profile', {
+    const response = await fetch(BACKEND_URL + '/profile', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', token },
         body: JSON.stringify({ pokemon: name }),
