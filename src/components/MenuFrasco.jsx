@@ -95,7 +95,7 @@ function MenuFrasco() {
 
     const fetchFlies = async () => {
         const token = sessionStorage.getItem('token');
-        const response = await fetch(`${BACKEND_URL}/flies/'${id}`, {
+        const response = await fetch(`${BACKEND_URL}/flies/${id}`, {
             method: 'GET',
             headers: { token },
         });
