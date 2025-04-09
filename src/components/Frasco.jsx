@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Mosca from "./Mosca";
-import {BACKEND_URL} from '../utils/URL.js';
+import {BACKEND_URL} from '../utils/BackendUrl.js';
 
 
 function Frasco(props) {

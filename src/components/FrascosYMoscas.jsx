@@ -2,7 +2,7 @@ import { checkSession } from "../utils/checkSession";
 import Header from './Header';
 import Spinner from './Spinner';
 import Frasco from './Frasco';
-import {BACKEND_URL} from '../utils/URL.js';
+import {BACKEND_URL} from '../utils/BackendUrl.js';
 
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";

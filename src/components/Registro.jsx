@@ -2,7 +2,7 @@ import Header from './Header';
 import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { checkSession } from '../utils/checkSession';
-import {BACKEND_URL} from '../utils/URL.js';
+import {BACKEND_URL} from '../utils/BackendUrl.js';
 
 
 const registerUser = async (username, password) => {

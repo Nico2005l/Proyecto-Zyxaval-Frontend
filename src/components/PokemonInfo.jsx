@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from './Header';
 import Spinner from './Spinner';
-import {BACKEND_URL} from '../utils/URL.js';
+import {BACKEND_URL} from '../utils/BackendUrl.js';
 
 const AsignPokemon = async (name) => {
     const token = sessionStorage.getItem('token');

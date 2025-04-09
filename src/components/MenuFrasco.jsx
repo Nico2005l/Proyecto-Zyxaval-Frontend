@@ -5,7 +5,7 @@ import ColorPicker from "./ColorPicker";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { checkSession } from "../utils/checkSession";
-import {BACKEND_URL} from '../utils/URL.js';
+import {BACKEND_URL} from '../utils/BackendUrl.js';
 
 
 

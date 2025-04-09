@@ -4,7 +4,7 @@ import Header from './Header';
 import Frasco from './Frasco';
 import Spinner from './Spinner';
 import { checkSession } from '../utils/checkSession';
-import {BACKEND_URL} from '../utils/URL.js';
+import {BACKEND_URL} from '../utils/BackendUrl.js';
 
 function Profile() {
     const [profileData, setProfileData] = useState([]);

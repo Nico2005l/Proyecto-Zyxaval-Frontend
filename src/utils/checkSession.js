@@ -1,4 +1,4 @@
-import {BACKEND_URL} from './URL.js';
+import {BACKEND_URL} from './BackendUrl.js';
 
 export const checkSession = async () => {
     const token = sessionStorage.getItem('token');
