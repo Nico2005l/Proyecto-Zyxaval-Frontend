@@ -6,7 +6,7 @@ import {BACKEND_URL} from '../utils/BackendUrl.js';
 
 const AsignPokemon = async (name) => {
     const token = sessionStorage.getItem('token');
-    const response = await fetch(`${BACKEND_URL + '/profile'}`, {
+    const response = await fetch(`${BACKEND_URL}/profile`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', token },
         body: JSON.stringify({ pokemon: name }),
@@ -35,7 +35,7 @@ const PokemonInfo = () => {
 
     const fetchProfile = async () => {
         const token = sessionStorage.getItem('token');
-        const response = await fetch(`${BACKEND_URL + '/profile'}`, {
+        const response = await fetch(`${BACKEND_URL}/profile`, {
             method: 'GET',
             headers: { token },
         });

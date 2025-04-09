@@ -6,7 +6,7 @@ import { checkSession } from "../utils/checkSession";
 import {BACKEND_URL} from '../utils/BackendUrl.js';
 
 const loginUser = async (username, password, navigate) => {
-    const response = await fetch(`${BACKEND_URL + '/login'}`, {
+    const response = await fetch(`${BACKEND_URL}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),

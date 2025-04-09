@@ -11,7 +11,7 @@ import {BACKEND_URL} from '../utils/BackendUrl.js';
 
 const changeJarName = async (name, id) => {
     const token = sessionStorage.getItem('token');
-    const response = await fetch(`${BACKEND_URL + '/jars/'+id}`, {
+    const response = await fetch(`${BACKEND_URL}/jars/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', token },
         body: JSON.stringify({ name }),
@@ -22,7 +22,7 @@ const changeJarName = async (name, id) => {
 
 const deleteJar = async (id) => {
     const token = sessionStorage.getItem('token');
-    const response = await fetch(`${BACKEND_URL + '/jars/'+id}`, {
+    const response = await fetch(`${BACKEND_URL}/jars/${id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', token },
     });
@@ -32,7 +32,7 @@ const deleteJar = async (id) => {
 
 const createFly = async (jarId, bodyColor) => {
     const token = sessionStorage.getItem('token');
-    const response = await fetch(`${BACKEND_URL + '/flies'}`, {
+    const response = await fetch(`${BACKEND_URL}/flies`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json',
                     'Cache-Control': 'no-cache', token },
@@ -44,7 +44,7 @@ const createFly = async (jarId, bodyColor) => {
 
 const deleteFly = async (jarId, flyid) => {
     const token = sessionStorage.getItem('token');
-    const response = await fetch(`${BACKEND_URL + '/flies/'+jarId+'/'+flyid}`, {
+    const response = await fetch(`${BACKEND_URL}/flies/${jarId}/${flyid}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json',
                     'Cache-Control': 'no-cache', token },
@@ -82,7 +82,7 @@ function MenuFrasco() {
 
     const fetchJar = async () => {
         const token = sessionStorage.getItem('token');
-        const response = await fetch(`${BACKEND_URL + '/jars/'+id}`, {
+        const response = await fetch(`${BACKEND_URL}/jars/${id}`, {
             method: 'GET',
             headers: {'Content-Type': 'application/json',
                         'Cache-Control': 'no-cache', token },
@@ -95,7 +95,7 @@ function MenuFrasco() {
 
     const fetchFlies = async () => {
         const token = sessionStorage.getItem('token');
-        const response = await fetch(`${BACKEND_URL + '/flies/'+id}`, {
+        const response = await fetch(`${BACKEND_URL}/flies/'${id}`, {
             method: 'GET',
             headers: { token },
         });
