@@ -6,52 +6,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { checkSession } from "../utils/checkSession";
 import {BACKEND_URL} from '../utils/BackendUrl.js';
-
-
-
-const changeJarName = async (name, id) => {
-    const token = sessionStorage.getItem('token');
-    const response = await fetch(`${BACKEND_URL}/jars/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json', token },
-        body: JSON.stringify({ name }),
-    });
-    const data = await response.json();
-    };
-
-
-const deleteJar = async (id) => {
-    const token = sessionStorage.getItem('token');
-    const response = await fetch(`${BACKEND_URL}/jars/${id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json', token },
-    });
-    const data = await response.json();
-
-};
-
-const createFly = async (jarId, bodyColor) => {
-    const token = sessionStorage.getItem('token');
-    const response = await fetch(`${BACKEND_URL}/flies`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json',
-                    'Cache-Control': 'no-cache', token },
-        body: JSON.stringify({ jarId, bodyColor})
-    });
-    const data = await response.json();
-    
-};
-
-const deleteFly = async (jarId, flyid) => {
-    const token = sessionStorage.getItem('token');
-    const response = await fetch(`${BACKEND_URL}/flies/${jarId}/${flyid}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json',
-                    'Cache-Control': 'no-cache', token },
-    });
-    const data = await response.json();
-    window.location.reload();
-};
+import { deleteFly, createFly, changeJarName, deleteJar, fetchJar, fetchFlies } from "../fetchs/BackendFetchs.js";
+import { s } from "framer-motion/client";
 
 function MenuFrasco() {
     const { id } = useParams();
@@ -60,6 +16,7 @@ function MenuFrasco() {
     const [jar, setJar] = useState({});
     const [flies, setFlies] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [selectedColor, setSelectedColor] = useState("#FFFFFF"); 
 
     const handleDelete = () => {
         deleteJar(id);
@@ -73,34 +30,8 @@ function MenuFrasco() {
         fetchJar();
     };
 
-    const [selectedColor, setSelectedColor] = useState("#FFFFFF"); // Color inicial
-
-    // Función que actualiza el color seleccionado
     const handleColorSelect = (color) => {
-        setSelectedColor(color); // Actualiza el estado con el color elegido
-    };
-
-    const fetchJar = async () => {
-        const token = sessionStorage.getItem('token');
-        const response = await fetch(`${BACKEND_URL}/jars/${id}`, {
-            method: 'GET',
-            headers: {'Content-Type': 'application/json',
-                        'Cache-Control': 'no-cache', token },
-        });
-        const data = await response.json();
-        
-        setJar(data);
-        setLoading(false);
-    };
-
-    const fetchFlies = async () => {
-        const token = sessionStorage.getItem('token');
-        const response = await fetch(`${BACKEND_URL}/flies/${id}`, {
-            method: 'GET',
-            headers: { token },
-        });
-        const data = await response.json();
-        setFlies(data);
+        setSelectedColor(color); 
     };
 
     useEffect(() => {
@@ -110,8 +41,15 @@ function MenuFrasco() {
             if (!isLoggedIn) {
                 navigate('/login');
             }else{
-                await fetchJar();
-                await fetchFlies();
+                const data = fetchJar(id);
+                const dataFlies = fetchFlies(id);
+                dataFlies.then((response) => {
+                    setFlies(response);
+                });
+                data.then((response) => {
+                    setJar(response);
+                    setLoading(false);
+                });
             };
         };
         verifySession(); 
@@ -127,7 +65,7 @@ function MenuFrasco() {
             <Header title="Menu Frasco" description="Aquí puedes gestionar tu frasco. Ademas de añadir y quitar moscas"/>  
             <div className="w-full max-w-6xl rounded-lg overflow-hidden shadow-2xl bg-white p-8 flex flex-col md:flex-row items-center gap-6 justify-self-center">
                 <div className="bg-gray-100 p-8 rounded-lg shadow-md w-full md:w-auto">
-                    <Frasco name={jar.name} id={jar.id} />
+                    <Frasco name={jar.name} id={jar.id} key={flies}/>
                 </div>
                 <div className="bg-gray-100 p-8 rounded-lg shadow-md w-full h-full">
                     <form onSubmit={handleChangeName} className="w-full max-w-4xl rounded-lg overflow-hidden bg-gray-100 p-6 space-y-4">
@@ -148,10 +86,8 @@ function MenuFrasco() {
                 <h1 className='text-3xl font-light mb-6'>Añadir Mosca</h1>
                 <form className="grid gap-4" onSubmit={async (e) => {
                     e.preventDefault();
-                    const bodyColor = selectedColor;
-                    await createFly(id, bodyColor);
-                    fetchFlies();
-                    window.location.reload();
+                    await createFly(id, selectedColor);
+                    setFlies([...flies, { id: flies.length + 1, bodyColor: selectedColor }]);
                 }}>
                     <div>
                         <h2 className="text-2xl font-light">Elige un color:</h2>
@@ -179,13 +115,19 @@ function MenuFrasco() {
                                 <div className="size-6 rounded-full border-2 border-gray-300" style={{ backgroundColor: fly.bodyColor }}></div>
                             </div>
                             <p className="text-xl font-light mb-4">
-                            Rareza: {fly.id % 7 === 0 ? 'Ultra-Raro' : fly.id % 5 === 0 ? 'Legendaria' : fly.id % 3 === 0 ? 'Raro' : 'Común'}
+                            Tipo: {(() => {
+                                const rarityCycle = fly.id % 6;
+                                if (rarityCycle === 0) return 'Mítica';
+                                if (rarityCycle === 1) return 'Legendaria';
+                                if (rarityCycle === 2) return 'Épica';
+                                if (rarityCycle === 3) return 'Rara';
+                                if (rarityCycle === 4) return 'Inusual';
+                                return 'Común';
+                            })()}
                             </p>
-                        
                             <button onClick={async () => {
                                 await deleteFly(id, fly.id);
-                                fetchFlies();
-                                window.location.reload();
+                                setFlies(flies.filter((f) => f.id !== fly.id));
                             }} className="px-6 py-3 bg-red-500 text-white rounded-full text-lg transform transition duration-500 hover:scale-105 shadow-sm hover:bg-red-700">Eliminar</button>
                         
                         </li>

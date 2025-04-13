@@ -2,56 +2,39 @@ import { checkSession } from "../utils/checkSession";
 import Header from './Header';
 import Spinner from './Spinner';
 import Frasco from './Frasco';
-import {BACKEND_URL} from '../utils/BackendUrl.js';
-
+import { fetchJars, createJar } from '../fetchs/BackendFetchs.js';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
-const createJar = async (name) => {
-    const token = sessionStorage.getItem('token');
-    const response = await fetch(`${BACKEND_URL}/jars`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', token },
-        body: JSON.stringify({ name }),
-    });
-    const data = await response.json();
-    return data;
-};
-
 
 function FrascosYMoscas() {
+    
     const navigate = useNavigate();
     const [jars, setJars] = useState([]);
     const [loading, setLoading] = useState(true);
-    useEffect(() => {
 
-        const fetchJars = async () => {
-            const token = sessionStorage.getItem('token');
-            const response = await fetch(`${BACKEND_URL}/jars`, {
-              method: 'GET',
-              headers: { token },
-            });
-            const data = await response.json();
-            setJars(data);
-            setLoading(false);
-        }
+    useEffect(() => {
 
         const verifySession = async () => {
             const isLoggedIn = await checkSession();
             if (!isLoggedIn) {
                 navigate('/login');
             }else{
-                await fetchJars();
-            }
-        };
-        
-        verifySession();
+                const data = fetchJars();
+                data.then((data) => {
+                setJars(data);
+                setLoading(false);
+            })
+            };
+        }
 
+        verifySession();
     }, []);
 
     if (loading) {
         return <Spinner />;
       }
+
     return ( 
     <div className="bg-gradient-to-b from-black to-gray-800 min-h-screen p-4">
        <Header title="Frascos y Moscas" description="Aquí puedes crear tus frascos y ver las moscas que has atrapado. Selecciona un frasco para gestionar sus moscas"/>  
@@ -73,9 +56,9 @@ function FrascosYMoscas() {
             <h1 className='text-3xl font-light mb-6'>Frascos:</h1>
             <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
                 {jars.map((jar) => (
-                <Link to={`/Frasco/${jar.id}`} className="text-black">
-                    <li key={jar.id} className="bg-gray-100 p-8 rounded-lg shadow-md">
-                        <Frasco name={jar.name} id={jar.id}/>
+                <Link to={`/Frasco/${jar.id}`} className="text-black" key={jar.id}>
+                    <li className="bg-gray-100 p-8 rounded-lg shadow-md">
+                        <Frasco name={jar.name} id={jar.id} />
                     </li>
                 </Link>
                 ))}
