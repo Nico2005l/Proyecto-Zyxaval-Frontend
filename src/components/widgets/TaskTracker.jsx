@@ -26,7 +26,7 @@ export default function TaskTracker() {
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">
       <h2 className="text-2xl font-semibold mb-4 text-gray-800">Mis Tareas</h2>
-      <div className="flex gap-4 mb-4">
+      <div className="grid grid-cols-1 gap-4 mb-4">
         <input
           type="text"
           value={newTask}
@@ -36,7 +36,7 @@ export default function TaskTracker() {
         />
         <button
           onClick={addTask}
-          className="bg-blue-500 text-white px-4 rounded-lg hover:bg-blue-600 transition-colors"
+          className="bg-blue-500 text-white px-4 rounded-lg hover:bg-blue-600 transition-colors p-2"
         >
           Agregar
         </button>
@@ -49,7 +49,7 @@ export default function TaskTracker() {
             >
               {task.text}
             </span>
-            <div className="flex gap-2">
+            <div className="lg:flex gap-2 grid">
               <button
                 onClick={() => toggleTask(task.id)}
                 className={`px-2 py-1 rounded-lg ${task.completed ? "bg-yellow-500 text-white" : "bg-green-500 text-white"} hover:bg-opacity-75 transition-colors`}

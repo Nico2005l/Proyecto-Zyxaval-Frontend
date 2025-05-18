@@ -26,7 +26,7 @@ export default function GifSearch () {
 return (
     <>
         <h2 className="text-2xl font-semibold mb-4">Buscador de GIFs</h2>
-        <div className="flex gap-4 mb-4">
+        <div className="grid grid-cols-1 gap-4 mb-4">
             <input
                 type="text"
                 value={query}
@@ -36,7 +36,7 @@ return (
             />
             <button
                 onClick={searchGifs}
-                className="bg-blue-500 text-white px-4 rounded-lg hover:bg-blue-600 transition-colors"
+                className="bg-blue-500 text-white px-4 rounded-lg hover:bg-blue-600 transition-colors p-2"
             >
                 Buscar
             </button>

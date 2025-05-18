@@ -77,9 +77,11 @@ export default function ExchangeRateWidget() {
           <p>Cargando...</p>
         ) : (
           <div className="flex flex-col gap-4">
-            <div className="flex gap-4 items-center">
+            <div className="flex items-center gap-4 mb-4">
+              <label className="text-lg font-semibold">Cantidad:</label>
               <input
                 type="number"
+                
                 value={amount}
                 onChange={(e) => {
                   const value = e.target.value.replace(/[^0-9.]/g, "");
@@ -87,8 +89,10 @@ export default function ExchangeRateWidget() {
                     setAmount(value);
                   }
                 }}
-                className="size-fit p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-2xl p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
+            </div>
+            <div className="flex items-center gap-4 mb-4">
               <select
                 value={currencies[0]}
                 onChange={(e) => setCurrencies([e.target.value, currencies[1]])}
@@ -96,7 +100,7 @@ export default function ExchangeRateWidget() {
               >
                 {Object.keys(flags).map((currency) => (
                   <option key={currency} value={currency}>
-                    {currency}
+                    {currency} 
                   </option>
                 ))}
               </select>
@@ -110,8 +114,10 @@ export default function ExchangeRateWidget() {
                     {currency}
                   </option>
                 ))}
+                
               </select>
-              <button className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => setCurrencies([currencies[1], currencies[0]])}>
+              
+              <button className="p-2  border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => setCurrencies([currencies[1], currencies[0]])}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v6h6M20 20v-6h-6M4 10l6-6M20 14l-6 6" />
                 </svg>
@@ -138,3 +144,6 @@ export default function ExchangeRateWidget() {
       </>
     );
   };
+
+
+

@@ -17,6 +17,7 @@ import MenuFrasco from './components/MenuFrasco';
 import Sombras from './components/Sombras';
 import NoEsta from './components/NoEsta';
 import MuroWidgets from './components/MuroWidgets';
+import InteligenseTests from './components/InteligenseTests';
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
       <Route path="/Frasco/:id" element={<MenuFrasco />} />
       <Route path="/NoEsta" element={<NoEsta />} />
       <Route path="/Widgets" element={<MuroWidgets />} />
+      <Route path="/ia" element={ <InteligenseTests/>} />
       
       <Route path="*" element={<NotFound/>} />
     </Routes>

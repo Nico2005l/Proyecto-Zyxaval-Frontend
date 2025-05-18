@@ -12,7 +12,7 @@ const MuroWidgets = () => {
         title="Widgets"
         description="Diversos widgets, algunos más interesantes que otros."
       />
-      <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
+      <div className="sm:columns-1 md:columns-2 lg:columns-3   gap-6">
         {widgets.map((Widget, index) => (
           <div
             key={index}
@@ -26,4 +26,13 @@ const MuroWidgets = () => {
   );
 };
 
+//Averiguar Two row bento grid layout 
+//https://tailwindcss.com/docs/columns#two-row-bento-grid-layout
+
 export default MuroWidgets;
+
+// sm md, lg, xl, 2xl
+// Responsive columns example:
+// sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5
+// You can adjust the number of columns per breakpoint as needed.
+// Example usage in Tailwind: <div className="columns-1 sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5">

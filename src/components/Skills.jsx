@@ -59,7 +59,7 @@ function Skills() {
   return (
     <section className="w-full max-w-6xl rounded-lg mx-auto text-center py-12 mb-8">
       <h2 className="text-4xl font-light text-white capitalize">Mis Habilidades</h2>
-      <div className=" flex gap-8 mt-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
         {skillsData.map((data, index) => (
           <SkillCard key={index} category={data.category} skills={data.skills} />
         ))}
